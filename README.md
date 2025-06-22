@@ -1,8 +1,5 @@
-# Java-
-分析pom.xml
-
 📖 简介
-JARVIS是一款基于Python的Java项目安全分析工具，通过解析pom.xml文件自动检测：
+JARVIS是一款基于Python的Java项目pom分析工具，通过解析pom.xml文件自动检测：
 
 项目架构（Spring Boot/MVC/JSP等）
 
@@ -15,18 +12,13 @@ JSP解析环境
 ✨ 核心功能
 功能模块	检测内容
 架构识别	Spring Boot/Spring MVC/JSP+Servlet
-JSP环境分析	Tomcat/Jetty JSP引擎、JSTL标签库等  Tomcat/Jetty JSP 引擎、
-漏洞扫描	Log4j/Shiro/Fastjson等组件的CVE漏洞
+JSP环境分析	判断是否存在jsp解析，寻找文件上传功能点，尝试文件上传导致的rce漏洞
+组件分析	Log4j/Shiro/Fastjson等组件的CVE漏洞
 Log4j/Shiro/Fastjson 等组件的 CVE 漏洞
 安全建议	文件上传RCE风险、未授权访问等
+
 🛠️ 快速开始
-环境要求
-Python 3.6+  Python 3.6+ 版
 
-Tkinter（通常内置）
-
-使用步骤
-bash  重击
 # 1. 下载工具
 ```
 git clone https://github.com/yourrepo/JARVIS.git
@@ -36,17 +28,54 @@ cd JARVIS
 # 2. 运行分析工具
 ```python jarvis.py```
 
-# 3. 在GUI界面粘贴pom.xml内容后点击"Analyze"
+# 3. 在GUI界面粘贴pom.xml内容后点击按钮
 📊 输出示例
 ```
-=== 项目类型分析 ===
-✅ 检测到Spring Boot项目
+=== 项目架构分析 ===
+检测到的架构: Spring Boot
 
-=== JSP环境检测 ===
+=== JSP解析环境 ===
 使用JSP: 是
+Servlet容器: Tomcat
 
-=== 漏洞警告 ===
-‼️ fastjson:1.2.58 - 存在RCE漏洞(CVE-2020-35490)
+=== 持久层框架分析 ===
+检测到的框架: MyBatis
+
+=== 检测到的依赖项 ===
+fastjson: 1.2.58
+log4j-core: 2.10.0
+mysql-connector-java: 5.1.47
+mybatis: 3.5.1
+druid: 1.1.19
+spring-boot: 2.1.0
+
+=== 安全漏洞分析 ===
+组件: fastjson 1.2.58
+状态: 可能存在问题 (中危)
+问题: 建议升级到1.2.83或更高版本
+--------------------------------------------------------------------------------
+组件: log4j-core 2.10.0
+状态: 存在漏洞 (高危)
+问题: Log4Shell (CVE-2021-44228)
+--------------------------------------------------------------------------------
+组件: mysql-connector-java 5.1.47
+状态: 存在漏洞 (中危)
+问题: 多个漏洞 (CVE-2019-2692, CVE-2020-2931等)
+--------------------------------------------------------------------------------
+组件: druid 1.1.19
+状态: 可能存在问题 (中危)
+问题: 建议升级到1.2.8或更高版本并配置访问控制
+--------------------------------------------------------------------------------
+
+=== 安全配置问题 ===
+问题: Druid未授权访问 (高危)
+描述: Druid监控页面可能未配置访问控制，导致敏感信息泄露
+解决方案:
+1. 升级Druid到最新版本
+2. 配置访问控制
+3. 在生产环境禁用监控页面
+
+分析时间: xxx
 ```
 
 
