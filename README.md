@@ -12,17 +12,19 @@ JSP解析环境
 ✨ 核心功能
 功能模块	检测内容
 架构识别	Spring Boot/Spring MVC/JSP+Servlet
+
 JSP环境分析	判断是否存在jsp解析，寻找文件上传功能点，尝试文件上传导致的rce漏洞
+
 组件分析	Log4j/Shiro/Fastjson等组件的CVE漏洞
 Log4j/Shiro/Fastjson 等组件的 CVE 漏洞
+
 安全建议	文件上传RCE风险、未授权访问等
 
 🛠️ 快速开始
 
 # 1. 下载工具
 ```
-git clone https://github.com/yourrepo/JARVIS.git
-cd JARVIS
+git clone https://github.com/adminnerr/JARVIS.git
 ```
 
 # 2. 运行分析工具
