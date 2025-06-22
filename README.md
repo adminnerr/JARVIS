@@ -13,7 +13,7 @@ JSP解析环境
 功能模块	检测内容
 架构识别	Spring Boot/Spring MVC/JSP+Servlet
 
-JSP环境分析	判断是否存在jsp解析，寻找文件上传功能点，尝试文件上传导致的rce漏洞
+JSP环境分析	判断是否存在jsp解析，再去寻找文件上传功能点，尝试文件上传导致的rce漏洞
 
 组件分析	Log4j/Shiro/Fastjson等组件的CVE漏洞
 Log4j/Shiro/Fastjson 等组件的 CVE 漏洞
